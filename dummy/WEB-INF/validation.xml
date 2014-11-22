@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+
+<form-validation>
+    <!-- ========== Default Language Form Definitions ===================== -->
+    <!--global>
+         <constant>
+             <constant-name>ZIP_CODE</constant-name>
+             <constant-value>^\d{5}\d*$</constant-value>
+         </constant>
+         <constant>
+             <constant-name>PHONE_MASK</constant-name>
+             <constant-value>^\s*(\d{0,3}|\(\s*\d{0,3}\s*\))\s*[-.]?\s*(\d{3}|\(\s*\d{3}\s*\))\s*[-.]?\s*\d{3}\s*[-.]?\s*\d{4}$</constant-value>
+         </constant>
+         <constant>
+             <constant-name>ANTI_PHONE_MASK</constant-name>
+             <constant-value>^((?!(\s*(\d{0,3}|\(\s*\d{0,3}\s*\))\s*[-.]?\s*(\d{3}|\(\s*\d{3}\s*\))\s*[-.]?\s*\d{3}\s*[-.]?\s*\d{4})).)*$</constant-value>
+         </constant>
+     </global-->
+
+    <formset>
+
+
+        <form name="userCO1">
+
+            <field property="email" depends="required, email">
+                <arg0 key="loginForm.jsp.email"/>
+            </field>
+
+            <field property="password" depends="required">
+                <arg0 key="loginForm.jsp.password"/>
+            </field>
+
+        </form>
+
+
+        <form name="userCO2">
+
+            <field property="displayName" depends="required,mask,minlength">
+                <arg0 key="signUp.jsp.displayName"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9a-zA-Z]*$</var-value>
+                </var>
+                <arg key="${var:minlength}" name="minlength" resource="false" position="1"/>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>3</var-value>
+                </var>
+            </field>
+
+            <field property="firstName" depends="required,mask,minlength">
+                <arg0 key="signUp.jsp.firstName"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9a-zA-Z]*$</var-value>
+                </var>
+                <arg key="${var:minlength}" name="minlength" resource="false" position="1"/>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>3</var-value>
+                </var>
+            </field>
+
+            <field property="email" depends="required, email">
+                <arg0 key="signUp.jsp.email"/>
+            </field>
+
+            <field property="confirmEmail" depends="required, email">
+                <arg0 key="signUp.jsp.confirmEmail"/>
+            </field>
+
+            <field property="password" depends="required">
+                <arg0 key="signUp.jsp.password"/>
+            </field>
+
+            <field property="confirmPassword" depends="required">
+                <arg0 key="signUp.jsp.confirmPassword"/>
+            </field>
+
+            <field property="password" depends="twofields">
+                <arg0 key="signUp.jsp.password"/>
+                <arg1 key="signUp.jsp.confirmPassword"/>
+                <var>
+                    <var-name>secondProperty</var-name>
+                    <var-value>confirmPassword</var-value>
+                </var>
+            </field>
+
+            <field property="email" depends="twofields">
+                <arg0 key="signUp.jsp.email"/>
+                <arg1 key="signUp.jsp.confirmEmail"/>
+                <var>
+                    <var-name>secondProperty</var-name>
+                    <var-value>confirmEmail</var-value>
+                </var>
+            </field>
+        </form>
+
+
+        <form name="userCO3">
+            <field property="email" depends="required, email">
+                <arg0 key="forgetPassword.jsp.email"/>
+            </field>
+        </form>
+
+
+        <form name="contactCO">
+            <field property="firstName" depends="required">
+                <arg0 key="contactUs.jsp.name"/>
+            </field>
+            <field property="email" depends="required,email">
+                <arg0 key="contactUs.jsp.email"/>
+            </field>
+            <field property="notes" depends="required">
+                <arg0 key="contactUs.jsp.comments"/>
+            </field>
+        </form>
+
+
+        <form name="addEmployeeCO">
+            <field property="name" depends="required">
+                <arg0 key="empForm.name"/>
+            </field>
+            <field property="email" depends="required,email">
+                <arg0 key="empForm.name"/>
+            </field>
+        </form>
+
+
+
+
+    </formset>
+
+
+</form-validation>

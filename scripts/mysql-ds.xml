@@ -1,0 +1,9 @@
+<datasources> 
+    <local-tx-datasource> 
+        <jndi-name>DefaultDS</jndi-name> 
+        <connection-url>jdbc:mysql://localhost:3306/oz</connection-url> 
+        <driver-class>com.mysql.jdbc.Driver</driver-class> 
+        <user-name>root</user-name> 
+        <password>root</password> 
+    </local-tx-datasource> 
+</datasources> 

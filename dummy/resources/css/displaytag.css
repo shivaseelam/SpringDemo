@@ -1,0 +1,86 @@
+#hotelTable table {
+    border: 1px solid #D4E1BF;
+    width: 80%;
+    margin: 1px 0 0px 0 !important;
+	
+}
+
+#hotelTable td {
+    text-align: left;
+    vertical-align: top;
+	border: 1px solid #D4E1BF;
+	padding:2px;
+	font-size:9px;
+}
+
+#hotelTable thead tr {
+    background-color: #B0FB5E;
+	font-size:9px;
+	text-align: center;
+	height:16px;
+}
+
+#hotelTable th.sorted {
+    background-color: #6FCB29;
+}
+
+#hotelTable th a, th a:visited {
+    color: black;
+	text-decoration:none;
+}
+
+#hotelTable th a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+#hotelTable th.sorted a, th.sortable a {
+    background-position: right;
+    display: block;
+    width: 100%;
+}
+
+#hotelTable th.sortable a {
+  /*  background-image: url( "../img/arrow_off.png" ); */
+}
+
+#hotelTable th.order1 a {
+ /*   background-image: url( "../img/arrow_down.png" );  */
+}
+
+#hotelTable th.order2 a {
+ /*   background-image: url( "../img/arrow_up.png" );  */
+}
+
+#hotelTable tr.odd {
+    background-color: #fff;
+	height:16px;
+}
+
+#hotelTable tr.tableRowEven, tr.even {
+    background-color: #DAFFCA;
+	height:16px;
+}
+
+#hotelTable span.pagebanner {
+	float:right;
+	font-size:9px;
+    background-color: #fff;
+    border: 1px solid #BFD39E;;
+    padding: 2px 4px 2px 4px;
+    width: 54%;
+    margin-top: 3px;
+    display: block;
+    border-bottom: none;
+}
+
+#hotelTable span.pagelinks {
+	float:right;
+	font-size:9px;
+    background-color: #fff;
+    border: 1px solid #BFD39E;;
+    padding: 2px 4px 2px 4px;
+    width: 54%;
+    display: block;
+    border-top: none;
+}

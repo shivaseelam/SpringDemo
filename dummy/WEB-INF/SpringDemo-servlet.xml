@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="validatorFactory" class="org.springmodules.commons.validator.DefaultValidatorFactory">
+        <property name="validationConfigLocations">
+            <list>
+                <value>/WEB-INF/validation.xml</value>
+                <value>/WEB-INF/validator-rules.xml</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="beanValidator" class="org.springmodules.commons.validator.DefaultBeanValidator">
+        <property name="validatorFactory">
+            <ref bean="validatorFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="addEmployeeController" class="org.demo.web.controller.AddEmployeeController">
+        <property name="commandName">
+            <value>addEmployeeForm</value>
+        </property>
+        <property name="commandClass">
+            <value>org.demo.web.model.AddEmployeeCO</value>
+        </property>
+        <property name="validator">
+            <bean class="org.springmodules.commons.validator.ConfigurableBeanValidator">
+                <property name="formName">
+                    <value>addEmployeeCO</value>
+                </property>
+                <property name="validatorFactory">
+                    <ref bean="validatorFactory"/>
+                </property>
+            </bean>
+        </property>
+        <property name="formView">
+            <value>addEmployee</value>
+        </property>
+        <property name="successView">
+            <value>redirect:listemp.htm</value>
+        </property>
+    </bean>
+
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/resources/jsp/" />
+      <property name="suffix" value=".jsp" />
+    </bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/oz"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    
+    <bean id="userController" class="org.demo.web.controller.UserController"/>
+    <bean id="addThankyouController" class="org.demo.web.controller.AddThankyouController"/>
+    <bean id="validatorJspController" class="org.demo.web.controller.ValidatorJspController"/>
+    <bean id="listEmployeeController" class="org.demo.web.controller.ListEmployeeController"/>
+    
+    
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/user.htm">userController</prop>
+                <prop key="/addthankyou.htm">addThankyouController</prop>
+                <prop key="/addEmployee.htm">addEmployeeController</prop>
+                <prop key="/validatorjspcontroller.htm">validatorJspController</prop>
+                <prop key="/listemp.htm">listEmployeeController</prop>
+            </props>
+        </property>
+    </bean>   
+    
+	<bean id="userDao" class="org.demo.dao.UserDAOImpl" >
+        <property name="jdbcTemplate">
+            <ref bean="jdbcTemplate"/>
+        </property>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+
+</beans>        
